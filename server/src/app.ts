@@ -5,18 +5,16 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 
-
-
 const createApp = () => {
   const app = express();
 
+  app.use(helmet());
   app.use(
     cors({
       credentials: true,
     }),
   );
 
-  app.use(helmet());
   app.use(
     express.urlencoded({
       extended: true,
