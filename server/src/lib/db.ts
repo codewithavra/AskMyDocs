@@ -15,3 +15,6 @@ if (!databaseUrl) {
 }
 
 const db = drizzle(databaseUrl);
+
+
+export default db
