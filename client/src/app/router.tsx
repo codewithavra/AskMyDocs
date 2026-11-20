@@ -14,6 +14,8 @@ import ProtectedLayout from "./layouts/ProtectedLayout"
  * Components
  */
 import Error from "@/components/shared/Error"
+import Loader from "@/components/shared/Loader"
+
 
 /**
  * Middlewares
@@ -33,6 +35,7 @@ const router = createBrowserRouter([
     path: "/",
     Component: RootLayout,
     errorElement: <Error />,
+    loader : Loader,
     children: [
       {
         middleware: [guestMiddleware],
