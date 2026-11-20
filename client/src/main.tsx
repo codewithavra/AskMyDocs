@@ -8,7 +8,7 @@ import { RouterProvider } from "react-router"
 /**
  * Other Imports
  */
-import router from "@/app/router.tsx"
+import router from "@/app/router"
 import Provider from "@/app/provider"
 /**
  * Style
