@@ -1,20 +1,78 @@
 /**
  * Node Imports
  */
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Navigate } from "react-router"
 
 /**
- * Other Imports
+ * Layouts
  */
-import RootLayout from "@/app/layouts/RootLayout";
+import RootLayout from "@/app/layouts/RootLayout"
+import AuthLayout from "./layouts/AuthLayout"
+import ProtectedLayout from "./layouts/ProtectedLayout"
+
+/**
+ * Components
+ */
+import Error from "@/components/shared/Error"
+
+/**
+ * Middlewares
+ */
+import { authMiddleware, guestMiddleware } from "./middlewares/auth.middleware"
+
+/**
+ * Pages
+ */
+import Login from "@/features/auth/pages/Login"
+import Signup from "@/features/auth/pages/Signup"
+import Home from "@/features/workspace/pages/Home"
+import Profile from "@/features/workspace/pages/Profile"
 
 const router = createBrowserRouter([
-    {
-        path : "/",
-        Component : RootLayout,
-        children : []
+  {
+    path: "/",
+    Component: RootLayout,
+    errorElement: <Error />,
+    children: [
+      {
+        middleware: [guestMiddleware],
+        Component: AuthLayout,
+        children: [
+          {
+            path: "login",
+            Component: Login,
+          },
+          {
+            path: "signup",
+            Component: Signup,
+          },
+        ],
+      },
+      {
+        middleware: [authMiddleware],
+        Component: ProtectedLayout,
+        children: [
+          {
+            path: "home",
+            Component: Home,
+          },
+          {
+            path: "profile",
+            Component: Profile,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    index: true,
+    element: <Navigate to="/home" replace />,
+  },
 
-    }
+  {
+    path: "*",
+    element: <Navigate to="/" replace />,
+  },
 ])
 
 export default router
