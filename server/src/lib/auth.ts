@@ -7,7 +7,7 @@ import { drizzleAdapter } from "better-auth/adapters/drizzle";
 /**
  * Other Imports
  */
-import db from "@/lib/db.js";
+import db from "@/db/db.js";
 import { env } from "@/config/env.js";
 
 export const auth = betterAuth({
