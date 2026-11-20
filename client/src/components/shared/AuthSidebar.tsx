@@ -1,3 +1,6 @@
+/**
+ * Node Imports
+ */
 const AuthSidebar = () => {
   return (
     <div>AuthSidebar</div>
