@@ -14,7 +14,6 @@ if (!databaseUrl) {
 	throw new Error('DATABASE_URL is required');
 }
 
-const db = drizzle(databaseUrl);
+export const db = drizzle(databaseUrl);
 
 
-export default db
